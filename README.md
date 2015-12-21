@@ -87,6 +87,7 @@ Using the prop `settings` we can customize some details that are not related to 
 Setting name | Values | Description
 ---|---|---
 `cellClass` | *function* | It is possible to add custom classes to the cells if you pass a function `fn( currentClass, columnKey, rowData )` in this setting.
+`className` | *string* | Class to use for the `<table>` element.
 `classPrefix` | *string* | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app.
 `header` | *boolean* | If `false`, no header will be shown for the table. Default `true`.
 `headerClass` | *function* | It is possible to add custom classes to the column headers if you pass a function `fn( currentClass, columnKey )` in this setting.
