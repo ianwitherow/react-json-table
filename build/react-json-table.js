@@ -90,8 +90,8 @@ return /******/ (function(modules) { // webpackBootstrap
 					// If noRowsMessage is an element, return it
 					return noRowsMessage;
 				} else {
-					// If it's a string, render it within a <p> element
-					return $.p({}, this.getSetting('noRowsMessage'));
+					// If it's a string, render it within a <div> element
+					return $.div({}, this.getSetting('noRowsMessage'));
 				}
 			}
 
