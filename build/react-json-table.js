@@ -84,6 +84,17 @@ return /******/ (function(modules) { // webpackBootstrap
 		getSetting: getSetting,
 
 		render: function(){
+			if (!this.props.rows || this.props.rows.length === 0) {
+				var noRowsMessage = this.getSetting('noRowsMessage');
+				if (typeof(noRowsMessage) === 'object') {
+					// If noRowsMessage is an element, return it
+					return noRowsMessage;
+				} else {
+					// If it's a string, render it within a <div> element
+					return $.div({}, this.getSetting('noRowsMessage'));
+				}
+			}
+
 			var cols = this.normalizeColumns(),
 				contents = [this.renderRows( cols )]
 			;
@@ -124,9 +135,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			var me = this,
 				items = this.props.rows,
 				settings = this.props.settings || {};
-
-			if( !items || !items.length )
-				return $.tbody({ key: "__noRowsMessage__Table__" }, [$.tr({ key: "__noRowsMessage__Row__" }, $.td({}, this.getSetting('noRowsMessage') ))]);
 
 			var rows = items.map( function( item, index ){
 				var key = me.getKey( item );
