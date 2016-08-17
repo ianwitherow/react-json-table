@@ -203,8 +203,9 @@ var Row = React.createClass({
 					className: className,
 					key: key,
 					"data-key": key,
-					onClick: me.onClickCell
-				}, content );
+					onClick: me.onClickCell,
+					dangerouslySetInnerHTML: {__html: content}
+				});
 			})
 		;
 
