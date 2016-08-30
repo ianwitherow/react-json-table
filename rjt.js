@@ -55,8 +55,13 @@ var JsonTable = React.createClass({
 			headerClass = this.getSetting( 'headerClass' ),
 			cells = cols.map( function(col){
 				var className = prefix + 'Column';
-				if( headerClass )
+				if (headerClass) {
 					className = headerClass( className, col.key );
+				}
+				
+				if (col.label.indexOf('$') > -1 || col.label.indexOf('GP') > -1 || col.label.indexOf('Revenue') > -1) {
+					className += " text-right";
+				}
 
 				return $.th(
 					{ className: className, key: col.key, onClick: me.onClickHeader, "data-key": col.key },
@@ -198,6 +203,16 @@ var Row = React.createClass({
 
 				if( typeof content == 'function' )
 					content = content( props.item, key );
+
+					if (content.indexOf('$') === 0) {
+						// Currency - align right
+						className += " text-right";
+					}
+					if (content.trim().length === 0) {
+						// Put in a space so the row isn't all stupid
+						content = '<div>&nbsp;</div>';
+					}
+
 
 				return $.td( {
 					className: className,
