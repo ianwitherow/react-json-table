@@ -194,20 +194,19 @@ var Row = React.createClass({
 			prefix = this.getSetting('classPrefix'),
 			cells = props.columns.map(function(col) {
 				var content = col.cell,
-				key = col.key,
-				className = prefix + 'Cell ' + prefix + 'Cell_' + key
-				;
+					key = col.key,
+					className = prefix + 'Cell ' + prefix + 'Cell_' + key;
 
-				if( cellClass )
-				className = cellClass( className, key, props.item );
+				if (cellClass)
+					className = cellClass( className, key, props.item );
 
-				if( typeof content == 'function' ) {
+				if (typeof content == 'function') {
 					content = content(props.item, key);
 				}
 				// Make sure content is not null
 				content = content || '';
 
-				if (content.toString().indexOf('$') === 0) {
+				if (content.toString().indexOf('$') === 0 || content.toString().indexOf('$') === 1) {
 					// Currency - align right
 					className += " text-right";
 				}
